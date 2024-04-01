@@ -43,7 +43,7 @@ public class gestaodelivorsGUI extends JFrame {
             }
         });
 
-        JButton btnListadelivros =new JButton("Lista")                         
+        JButton btnListadelivros =new JButton("Lista");                         
 
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(4, 1));
@@ -107,6 +107,8 @@ public class gestaodelivorsGUI extends JFrame {
         }
     }
 
+
+    //teste
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
