@@ -39,6 +39,8 @@ public class livro {
         this.prazo = prazo;
     }
 
+    //oi
+
     public String toString() {
         return "Livro [titulo=" + titulo + ", autor=" + autor + ", categoria=" + categoria + ", isbn=" + isbn
                 + ", disponivel=" + disponivel + ", prazo=" + prazo + "]";
