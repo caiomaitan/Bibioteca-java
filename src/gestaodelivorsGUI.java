@@ -79,6 +79,7 @@ public class gestaodelivorsGUI extends JFrame {
         if (livro != null) {
             biblioteca.removerLivro(livro);
             JOptionPane.showMessageDialog(null, "Livro removido com sucesso!");
+            lista.removerLivroDaLista(livro);
         } else {
             JOptionPane.showMessageDialog(null, "Livro não encontrado.");
         }
@@ -103,6 +104,7 @@ public class gestaodelivorsGUI extends JFrame {
             int novoPrazo = Integer.parseInt(JOptionPane.showInputDialog("Informe o novo prazo de empréstimo do livro:"));
             biblioteca.atualizarPrazo(livro, novoPrazo);
             JOptionPane.showMessageDialog(null, "Prazo atualizado com sucesso!");
+            lista.atualizarPrazoNaLista(livro, novoPrazo);
         } else {
             JOptionPane.showMessageDialog(null, "Livro não encontrado.");
         }

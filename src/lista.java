@@ -37,6 +37,32 @@ public class lista extends JFrame {
       ", Prazo: " + livro.getPrazo() + "\n");
     }
 
+    public void removerLivroDaLista(livro livro) {
+        String livroInfo = "Título: " + livro.getTitulo() + ", Autor: " + livro.getAutor() +
+                ", Categoria: " + livro.getCategoria() + ", ISBN: " + livro.getISBN() +
+                ", Prazo: " + livro.getPrazo() + "\n";
+    
+        String text = textarea.getText();
+        String newText = text.replace(livroInfo, ""); 
+        textarea.setText(newText);
+    }
+
+    public void atualizarPrazoNaLista(livro livro, int novoPrazo) {
+        String isbn = livro.getISBN();
+        String[] lines = textarea.getText().split("\n");
+        StringBuilder newText = new StringBuilder();
+    
+        for (String line : lines) {
+            if (line.contains("ISBN: " + isbn)) {
+                line = line.replaceFirst("Prazo: \\d+", "Prazo: " + novoPrazo);
+            }
+            newText.append(line).append("\n");
+        }
+    
+        textarea.setText(newText.toString());
+    }
+    
+
   
   
 }
