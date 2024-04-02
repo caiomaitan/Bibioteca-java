@@ -26,7 +26,7 @@ public class biblioteca {
 
     public livro buscarLivroPorISBN(String isbn) {
         for (livro livro : acervo) {
-            if (livro.getIsbn().equals(isbn)) {
+            if (livro.getISBN().equals(isbn)) {
                 return livro;
             }
         }

@@ -5,12 +5,15 @@ import java.awt.event.ActionListener;
 
 public class gestaodelivorsGUI extends JFrame {
     private biblioteca biblioteca;
+    private lista lista;
 
-    public gestaodelivorsGUI() {
+    public gestaodelivorsGUI(lista lista) {
         super("Gestão de Livros");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
 
         biblioteca = new biblioteca();
-
+        this.lista = lista; 
+       
         JButton btnAdicionarLivro = new JButton("Adicionar Livro");
         btnAdicionarLivro.addActionListener(new ActionListener() {
             @Override
@@ -43,8 +46,6 @@ public class gestaodelivorsGUI extends JFrame {
             }
         });
 
-        JButton btnListadelivros =new JButton("Lista");                         
-
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(4, 1));
         panel.add(btnAdicionarLivro);
@@ -56,7 +57,6 @@ public class gestaodelivorsGUI extends JFrame {
         container.add(panel);
 
         setSize(300, 200);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
 
@@ -70,6 +70,7 @@ public class gestaodelivorsGUI extends JFrame {
         livro novoLivro = new livro(titulo, autor, categoria, isbn, prazo);
         biblioteca.adicionarLivro(novoLivro);
         JOptionPane.showMessageDialog(null, "Livro adicionado com sucesso!");
+        lista.adicionarLivroNaLista(novoLivro);
     }
 
     private void removerLivro() {
@@ -105,16 +106,5 @@ public class gestaodelivorsGUI extends JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Livro não encontrado.");
         }
-    }
-
-    //bolo maconheiro
-    //teste
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new gestaodelivorsGUI();
-            }
-        });
     }
 }

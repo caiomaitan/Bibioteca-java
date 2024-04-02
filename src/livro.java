@@ -19,8 +19,16 @@ public class livro {
         return titulo;
     }
     
-    public String getIsbn(){
+    public String getISBN(){
         return isbn;
+    }
+
+    public String getAutor(){
+        return autor;
+    }
+
+    public String getCategoria(){
+        return categoria;
     }
 
     public void setDisponivel(boolean disponivel) {
@@ -39,7 +47,7 @@ public class livro {
         this.prazo = prazo;
     }
 
-    //oi super oi 2
+    
 
     public String toString() {
         return "Livro [titulo=" + titulo + ", autor=" + autor + ", categoria=" + categoria + ", isbn=" + isbn
