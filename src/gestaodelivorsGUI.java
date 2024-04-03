@@ -65,9 +65,27 @@ public class gestaodelivorsGUI extends JFrame {
         String autor = JOptionPane.showInputDialog("Informe o autor do livro:");
         String categoria = JOptionPane.showInputDialog("Informe a categoria do livro:");
         String isbn = JOptionPane.showInputDialog("Informe o ISBN do livro:");
-        int prazo = Integer.parseInt(JOptionPane.showInputDialog("Informe o prazo de empréstimo do livro:"));
+        
+        if(biblioteca.buscarLivroPorISBN(isbn)!= null){
+            JOptionPane.showMessageDialog(null, "Já existe um livro com este ISBN na biblioteca.");
+        return;
+        }
 
-        livro novoLivro = new livro(titulo, autor, categoria, isbn, prazo);
+        int prazo;
+    boolean disponivel = true;
+    while (true) {
+        String input = JOptionPane.showInputDialog("Informe o prazo de empréstimo do livro:");
+        try {
+            prazo = Integer.parseInt(input);
+            break; 
+        } catch (NumberFormatException e) {
+            
+            JOptionPane.showMessageDialog(null, "O prazo de empréstimo deve ser um número inteiro.");
+        }
+    }
+
+        livro novoLivro = new livro(titulo, autor, categoria, isbn, disponivel , prazo);
+
         biblioteca.adicionarLivro(novoLivro);
         JOptionPane.showMessageDialog(null, "Livro adicionado com sucesso!");
         lista.adicionarLivroNaLista(novoLivro);
@@ -92,6 +110,7 @@ public class gestaodelivorsGUI extends JFrame {
             boolean disponivel = JOptionPane.showConfirmDialog(null, "O livro está disponível?") == JOptionPane.YES_OPTION;
             biblioteca.atualizarDisponibilidade(livro, disponivel);
             JOptionPane.showMessageDialog(null, "Disponibilidade atualizada com sucesso!");
+            lista.atualizarDisponibilidadeNaLista(livro, disponivel);
         } else {
             JOptionPane.showMessageDialog(null, "Livro não encontrado.");
         }

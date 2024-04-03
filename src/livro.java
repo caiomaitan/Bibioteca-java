@@ -6,7 +6,7 @@ public class livro {
     private boolean disponivel;
     private int prazo;
 
-    public livro(String titulo, String autor, String categoria, String isbn, int prazo) {
+    public livro(String titulo, String autor, String categoria , String isbn,boolean disponivel, int prazo) {
         this.titulo = titulo;
         this.autor = autor;
         this.categoria = categoria;
@@ -29,6 +29,10 @@ public class livro {
 
     public String getCategoria(){
         return categoria;
+    }
+
+    public boolean getDisponivel(){
+        return disponivel;
     }
 
     public void setDisponivel(boolean disponivel) {

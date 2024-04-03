@@ -32,15 +32,15 @@ public class lista extends JFrame {
    
 
     public void adicionarLivroNaLista(livro livro) {
-      textarea.append("Título: " + livro.getTitulo() + ", Autor: " + livro.getAutor() +
-      ", Categoria: " + livro.getCategoria() + ", ISBN: " + livro.getISBN() +
-      ", Prazo: " + livro.getPrazo() + "\n");
+        textarea.append("Título: " + livro.getTitulo() + ", Autor: " + livro.getAutor() +
+        ", Categoria: " + livro.getCategoria() + ", ISBN: " + livro.getISBN() +
+        ", Prazo: " + livro.getPrazo() + ", Disponibilidade: " + livro.getDisponivel() + "\n");
     }
 
     public void removerLivroDaLista(livro livro) {
         String livroInfo = "Título: " + livro.getTitulo() + ", Autor: " + livro.getAutor() +
                 ", Categoria: " + livro.getCategoria() + ", ISBN: " + livro.getISBN() +
-                ", Prazo: " + livro.getPrazo() + "\n";
+                ", Prazo: " + livro.getPrazo() + ",  Disponibilidade:  "+ livro.getDisponivel() + "\n";
     
         String text = textarea.getText();
         String newText = text.replace(livroInfo, ""); 
@@ -61,9 +61,27 @@ public class lista extends JFrame {
     
         textarea.setText(newText.toString());
     }
+
+    public void atualizarDisponibilidadeNaLista(livro livro, boolean disponibilidade) {
+        String isbn = livro.getISBN();
+        String[] lines = textarea.getText().split("\n");
+        StringBuilder newText = new StringBuilder();
+    
+        for (String line : lines) {
+            if (line.contains("ISBN: " + isbn)) {
+                
+                String newDisponibilidade = disponibilidade ? "true" : "false";
+                line = line.replaceFirst("Disponibilidade: .+", "Disponibilidade: " + newDisponibilidade);
+            }
+            newText.append(line).append("\n");
+        }
+    
+        textarea.setText(newText.toString());
+    }
+}
     
 
   
   
-}
+
 
