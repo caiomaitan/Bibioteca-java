@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class biblioteca {
-    private List<livro> acervo;
+    private static List<livro> acervo;
 
     public biblioteca() {
         this.acervo = new ArrayList<>();
@@ -31,6 +31,10 @@ public class biblioteca {
             }
         }
         return null;
+    }
+
+    public static List<livro> getAcervo() {
+        return acervo;
     }
 
     
