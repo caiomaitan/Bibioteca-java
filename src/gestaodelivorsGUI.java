@@ -18,7 +18,7 @@ public class gestaodelivorsGUI extends JFrame {
         btnAdicionarLivro.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                adicionarLivro();
+                openAddBookWindow();
             }
         });
 
@@ -60,53 +60,8 @@ public class gestaodelivorsGUI extends JFrame {
         setVisible(true);
     }
 
-    private void adicionarLivro() {
-        String titulo = JOptionPane.showInputDialog("Informe o título do livro:");
-        if (titulo == null || titulo.trim().isEmpty()) { // Verifica se o título está vazio ou só contém espaços em branco
-            JOptionPane.showMessageDialog(null, "Por favor, informe um título válido.");
-            return;
-        }
-
-        String autor = JOptionPane.showInputDialog("Informe o autor do livro:");
-        if (autor == null || autor.trim().isEmpty()) { // Verifica se o autor está vazio ou só contém espaços em branco
-            JOptionPane.showMessageDialog(null, "Por favor, informe um autor válido.");
-            return;
-        }
-
-        String categoria = JOptionPane.showInputDialog("Informe a categoria do livro:");
-        if (categoria == null || categoria.trim().isEmpty()) { // Verifica se a categoria está vazia ou só contém espaços em branco
-            JOptionPane.showMessageDialog(null, "Por favor, informe uma categoria válida.");
-            return;
-        }
-
-        String isbn = JOptionPane.showInputDialog("Informe o ISBN do livro:");
-        if (isbn == null || isbn.trim().isEmpty()) { // Verifica se o ISBN está vazio ou só contém espaços em branco
-            JOptionPane.showMessageDialog(null, "Por favor, informe um ISBN válido.");
-            return;
-        }
-
-        if (biblioteca.buscarLivroPorISBN(isbn) != null) {
-            JOptionPane.showMessageDialog(null, "Já existe um livro com este ISBN na biblioteca.");
-            return;
-        }
-
-        int prazo;
-        boolean disponivel = true;
-        while (true) {
-            String input = JOptionPane.showInputDialog("Informe o prazo de empréstimo do livro:");
-            try {
-                prazo = Integer.parseInt(input);
-                break;
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "O prazo de empréstimo deve ser um número inteiro.");
-            }
-        }
-
-        livro novoLivro = new livro(titulo, autor, categoria, isbn, disponivel, prazo);
-
-        biblioteca.adicionarLivro(novoLivro);
-        JOptionPane.showMessageDialog(null, "Livro adicionado com sucesso!");
-        lista.adicionarLivroNaLista(novoLivro);
+    private void openAddBookWindow() {
+        new AddBookWindow(biblioteca, lista);
     }
 
     private void removerLivro() {
@@ -145,5 +100,14 @@ public class gestaodelivorsGUI extends JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Livro não encontrado.");
         }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new gestaodelivorsGUI(new lista());
+            }
+        });
     }
 }
