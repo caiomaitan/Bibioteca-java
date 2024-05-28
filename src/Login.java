@@ -21,12 +21,14 @@ public class Login extends JFrame {
     private final JPasswordField passwordField;
     private final JButton loginButton;
     private final JLabel statusLabel;
+    public String loggedUser;
 
     public Login() {
         setTitle("Login Screen");
         setSize(300, 150); // Configura tamanho da janela
         setDefaultCloseOperation(EXIT_ON_CLOSE); // Configura ação ao fechar janela
         setLocationRelativeTo(null); // Centraliza janela
+
 
         // Inicializa componentes
         usernameLabel = new JLabel("Usuário:");
@@ -49,7 +51,7 @@ public class Login extends JFrame {
         add(new JLabel());
         add(statusLabel);
 
-        // Adiciona ActionListener ao botão de login
+
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -64,10 +66,11 @@ public class Login extends JFrame {
 
         statusLabel.setText("Validating...");
         if (authenticateUser(username, password)) {
+            loggedUser = username;
             JOptionPane.showMessageDialog(this, "Login Successful!");
             statusLabel.setText("Login Successful");
             this.setVisible(false);
-            new Menu().setVisible(true);
+            new Menu(loggedUser).setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "Invalid username or password.");
             statusLabel.setText("Invalid username or password.");
@@ -81,7 +84,7 @@ public class Login extends JFrame {
             String query = "SELECT * FROM usuario WHERE nome = ? AND senha = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                 preparedStatement.setString(1, username);
-                preparedStatement.setString(2, hashPassword(password));
+                preparedStatement.setString(2, password);
 
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     return resultSet.next();
@@ -93,23 +96,11 @@ public class Login extends JFrame {
         }
     }
 
-    private String hashPassword(String password) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            byte[] hash = md.digest(password.getBytes());
-            StringBuilder hexString = new StringBuilder();
-            for (byte b : hash) {
-                String hex = Integer.toHexString(0xff & b);
-                if (hex.length() == 1) hexString.append('0');
-                hexString.append(hex);
-            }
-            return hexString.toString();
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new Login().setVisible(true));
-    }
+
+
+
+
+
+
 }
