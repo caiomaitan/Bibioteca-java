@@ -7,8 +7,8 @@ import java.sql.*;
 public class Edit extends JFrame {
     JTextField id;
     Usuarios usuarios;
-
     JButton remover;
+    JButton Adicionar;
     JButton Editar;
     JButton Adm;
 
@@ -20,24 +20,24 @@ public class Edit extends JFrame {
         setLocationRelativeTo(null);
 
         id = new JTextField(20);
-
-
+        Adicionar = new JButton("Adicionar Usuarios");
         remover = new JButton("Remover Usuario");
         Editar = new JButton("Editar Usuario");
         Adm = new JButton("Permissões");
 
         JPanel searchPanel = new JPanel();
-        searchPanel.add(id);
         searchPanel.add(new JLabel("ID: "));
+        searchPanel.add(id);
+        searchPanel.add(Adicionar,BorderLayout.WEST);
 
         JPanel southpanel = new JPanel();
+
         southpanel.add(remover);
         southpanel.add(Editar);
         southpanel.add(Adm);
 
         add(searchPanel, BorderLayout.NORTH);
         add(southpanel, BorderLayout.SOUTH);
-
 
         remover.addActionListener(new ActionListener() {
             @Override
@@ -60,6 +60,15 @@ public class Edit extends JFrame {
                 admUser(id.getText());
             }
         });
+
+        Adicionar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CriaUsuario();
+            }
+        });
+
+
 
 
     }
@@ -98,6 +107,7 @@ public class Edit extends JFrame {
                         preparedStatement.executeUpdate();
                         usuarios.refreshUsers();
                         editar.dispose();
+
                     }
                 } catch (SQLException ex) {
                     ex.printStackTrace();
@@ -172,6 +182,55 @@ public class Edit extends JFrame {
         } catch (SQLException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Erro ao acessar o banco de dados: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void CriaUsuario() {
+        JFrame frame = new JFrame("AddUser");
+        frame.setSize(300, 200);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        frame.setLayout(new GridLayout(5, 1));
+
+        JTextField userField = new JTextField(20);
+        JPasswordField passwordField = new JPasswordField(20);
+        JLabel nomeLabel = new JLabel("Nome");
+        JLabel passwordLabel = new JLabel("Senha");
+        JButton criarButton = new JButton("Criar Usuario");
+
+        frame.add(nomeLabel);
+        frame.add(userField);
+        frame.add(passwordLabel);
+        frame.add(passwordField);
+        frame.add(criarButton);
+
+        criarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String nome = userField.getText();
+                String senha = new String(passwordField.getPassword());
+                AddUsuario(nome, senha);
+                frame.dispose();
+            }
+        });
+
+        frame.setVisible(true);
+    }
+
+    private void AddUsuario(String username, String senha) {
+        String url = "jdbc:sqlite:banco.db";
+        try (Connection connection = DriverManager.getConnection(url)) {
+            String query = "INSERT INTO usuario (nome, senha) VALUES (?, ?)";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1, username);
+                preparedStatement.setString(2, senha);
+                preparedStatement.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Criado com sucesso");
+                usuarios.refreshUsers();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao adicionar usuário: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

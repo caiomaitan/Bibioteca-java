@@ -7,7 +7,7 @@ import java.sql.*;
 public class Usuarios extends JFrame {
 
     private final JTextArea displayArea;
-    private final JButton AddUser;
+
     private final JButton Edit;
     private final JTextField searchField;
     private final JButton searchButton;
@@ -20,7 +20,7 @@ public class Usuarios extends JFrame {
 
         displayArea = new JTextArea();
         displayArea.setEditable(false);
-        AddUser = new JButton("Adicionar Usuarios");
+
         Edit = new JButton("Edit");
         searchField = new JTextField(15);
         searchButton = new JButton("Buscar");
@@ -37,16 +37,11 @@ public class Usuarios extends JFrame {
 
         add(northPanel, BorderLayout.NORTH);
         add(new JScrollPane(displayArea), BorderLayout.CENTER);
-        add(AddUser, BorderLayout.SOUTH);
+
 
         showUsers();
 
-        AddUser.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddUsers(Usuarios.this).setVisible(true);
-            }
-        });
+
 
         Edit.addActionListener(new ActionListener() {
             @Override
