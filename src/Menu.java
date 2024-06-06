@@ -35,7 +35,7 @@ public class Menu extends JFrame {
         north.add(searchField);
         north.add(searchButton);
 
-        // Adicionando o botão de Status à esquerda do campo de pesquisa
+
         Status = new JButton("Retirada/Devolução");
         north.add(Status);
 
@@ -76,7 +76,7 @@ public class Menu extends JFrame {
             }
         });
 
-        // Adicionando a funcionalidade de busca ao botão de busca
+
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

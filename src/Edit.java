@@ -15,7 +15,7 @@ public class Edit extends JFrame {
     public Edit(Usuarios usuarios) {
         this.usuarios = usuarios;
         setTitle("Edição de Usuarios");
-        setSize(400, 400);
+        setSize(800, 400);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -26,11 +26,12 @@ public class Edit extends JFrame {
         Adm = new JButton("Permissões");
 
         JPanel searchPanel = new JPanel();
-        searchPanel.add(new JLabel("ID: "));
-        searchPanel.add(id);
+
         searchPanel.add(Adicionar,BorderLayout.WEST);
 
         JPanel southpanel = new JPanel();
+        southpanel.add(new JLabel("ID: "));
+        southpanel.add(id);
 
         southpanel.add(remover);
         southpanel.add(Editar);
@@ -187,7 +188,7 @@ public class Edit extends JFrame {
 
     private void CriaUsuario() {
         JFrame frame = new JFrame("AddUser");
-        frame.setSize(300, 200);
+        frame.setSize(800, 400);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setLayout(new GridLayout(5, 1));

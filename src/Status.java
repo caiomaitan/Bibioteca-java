@@ -48,7 +48,7 @@ public class Status extends JFrame {
 
     private void setRetirar() {
         JFrame retirar = new JFrame("Retirar Livros");
-        retirar.setSize(300, 200);
+        retirar.setSize(800, 400);
         retirar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         retirar.setLocationRelativeTo(this);
 
@@ -154,7 +154,7 @@ public class Status extends JFrame {
                 if (rs.next()) {
                     int dispo = rs.getInt("disponibilidade");
                     if (dispo == 1) {
-                        String query_ = "UPDATE livros SET disponibilidade = 0 AND prazo = 0 WHERE titulo = ? AND autor = ?";
+                        String query_ = "UPDATE livros SET disponibilidade = 0, prazo = 0 WHERE titulo = ? AND autor = ?";
                         try (PreparedStatement preparedStatement1 = connection.prepareStatement(query_)) {
                             preparedStatement1.setString(1, titulo);
                             preparedStatement1.setString(2, autor);

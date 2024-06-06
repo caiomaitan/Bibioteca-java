@@ -18,7 +18,7 @@ public class Livros extends JFrame {
 
     public Livros() {
         setTitle("Livros");
-        setSize(400, 400);
+        setSize(800, 400);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 

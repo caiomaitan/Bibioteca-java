@@ -17,7 +17,7 @@ public class EditLivros extends JFrame {
     public EditLivros(Livros livros) {
         this.livros = livros;
         setTitle("Edição de Livros");
-        setSize(400, 400);
+        setSize(800, 400);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -37,19 +37,21 @@ public class EditLivros extends JFrame {
 
 
         JPanel searchPanel = new JPanel();
-        searchPanel.add(isbn);
-        searchPanel.add(new JLabel("ISBN: "));
+
+
 
 
         JPanel southpanel = new JPanel();
         southpanel.add(remover);
         southpanel.add(Editar);
+        southpanel.add(isbn);
+        southpanel.add(new JLabel("ISBN do livro que deseja editar ou remover: "));
 
 
 
 
 
-        add(searchPanel, BorderLayout.NORTH);
+
         add(southpanel, BorderLayout.SOUTH);
         add(centerpanel,BorderLayout.CENTER);
 
@@ -86,7 +88,7 @@ public class EditLivros extends JFrame {
 
     private void editarLivro(String isbn) {
         JFrame editar = new JFrame("Editar");
-        editar.setSize(300, 200);
+        editar.setSize(800, 400);
         editar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         editar.setLocationRelativeTo(this);
 
@@ -179,7 +181,7 @@ public class EditLivros extends JFrame {
 
     private void CriaLivros(){
         JFrame AddEdit = new JFrame("Adicionar Livro");
-        AddEdit.setSize(300, 200);
+        AddEdit.setSize(800, 400);
         AddEdit.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         AddEdit.setLocationRelativeTo(this);
 

@@ -30,7 +30,7 @@ public class Login extends JFrame {
         setLocationRelativeTo(null); // Centraliza janela
 
 
-        // Inicializa componentes
+
         usernameLabel = new JLabel("Usuário:");
         passwordLabel = new JLabel("Senha:");
         usernameField = new JTextField(20);
@@ -38,10 +38,9 @@ public class Login extends JFrame {
         loginButton = new JButton("Login");
         statusLabel = new JLabel();
 
-        // Set layout
+
         setLayout(new GridLayout(4, 2));
 
-        // Adiciona componentes ao frame
         add(usernameLabel);
         add(usernameField);
         add(passwordLabel);
