@@ -6,11 +6,11 @@ import java.sql.*;
 
 public class Usuarios extends JFrame {
 
-    private final JTextArea displayArea;
+    private  JTextArea displayArea;
 
-    private final JButton Edit;
-    private final JTextField searchField;
-    private final JButton searchButton;
+    private  JButton Edit;
+    private  JTextField searchField;
+    private  JButton searchButton;
 
     public Usuarios() {
         setTitle("Usuarios");

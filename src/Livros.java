@@ -10,11 +10,11 @@ import java.sql.SQLException;
 
 public class Livros extends JFrame {
 
-    private final JTextArea displayArea;
+    private  JTextArea displayArea;
 
-    private final JButton EditLivros;
-    private final JTextField searchField;
-    private final JButton searchButton;
+    private  JButton EditLivros;
+    private  JTextField searchField;
+    private  JButton searchButton;
 
     public Livros() {
         setTitle("Livros");
