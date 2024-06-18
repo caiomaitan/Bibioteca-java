@@ -11,9 +11,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Status extends JFrame {
-    private final JButton Devolver;
-    private final JButton Retirar;
-    private final Menu menu;
+    private  JButton Devolver;
+    private  JButton Retirar;
+    private  Menu menu;
 
     public Status(Menu menu) {
         setTitle("Emprestimos");

@@ -15,12 +15,12 @@ import org.slf4j.LoggerFactory;
 public class Login extends JFrame {
     private static final Logger logger = LoggerFactory.getLogger(Login.class);
 
-    private final JLabel usernameLabel;
-    private final JLabel passwordLabel;
-    private final JTextField usernameField;
-    private final JPasswordField passwordField;
-    private final JButton loginButton;
-    private final JLabel statusLabel;
+    private JLabel usernameLabel;
+    private  JLabel passwordLabel;
+    private  JTextField usernameField;
+    private  JPasswordField passwordField;
+    private  JButton loginButton;
+    private  JLabel statusLabel;
     public String loggedUser;
 
     public Login() {

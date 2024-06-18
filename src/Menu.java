@@ -13,13 +13,13 @@ import org.slf4j.LoggerFactory;
 public class Menu extends JFrame {
     private static final Logger logger = LoggerFactory.getLogger(Menu.class);
 
-    private final JButton editarUsuarios;
-    private final JButton Status;
-    private final JButton editarLivros;
-    private final JTextArea displayArea;
-    private String username;
-    private final JTextField searchField;
-    private final JButton searchButton;
+    private  JButton editarUsuarios;
+    private  JButton Status;
+    private  JButton editarLivros;
+    private  JTextArea displayArea;
+    private  String username;
+    private JTextField searchField;
+    private  JButton searchButton;
 
     public Menu(String username) {
         this.username = username;
