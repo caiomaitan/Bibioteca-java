@@ -82,7 +82,7 @@ public class Livros extends JFrame {
                     result.append("Autor: ").append(autor).append("  ");
                     result.append("Categoria: ").append(categoria).append("  ");
                     result.append("ISBN: ").append(isbn).append("  ");
-                    result.append("Prazo: ").append(prazo).append("  ");
+                    result.append("Prazo: ").append(prazo).append(" dias").append("  ");
                     result.append("Disponibilidade: ").append(disponibilidade).append("\n");
                 }
                 displayArea.setText(result.toString());
@@ -99,12 +99,13 @@ public class Livros extends JFrame {
     private void searchLivro(String query) {
         String url = "jdbc:sqlite:banco.db";
         try (Connection connection = DriverManager.getConnection(url)) {
-            String sql = "SELECT * FROM livros WHERE titulo LIKE ? OR autor LIKE ? OR isbn LIKE ? OR categoria LIKE ?";
+            String sql = "SELECT * FROM livros WHERE titulo LIKE ? OR autor LIKE ? OR isbn LIKE ? OR categoria LIKE ? OR disponibilidade LIKE ?";
             try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
                 pstmt.setString(1, "%" + query + "%");
                 pstmt.setString(2, "%" + query + "%");
                 pstmt.setString(3, "%" + query + "%");
                 pstmt.setString(4, "%" + query + "%");
+                pstmt.setString(5, "%" + query + "%");
                 ResultSet rs = pstmt.executeQuery();
                 StringBuilder result = new StringBuilder();
                 while (rs.next()) {
@@ -119,7 +120,7 @@ public class Livros extends JFrame {
                     result.append("Autor: ").append(autor).append("  ");
                     result.append("Categoria: ").append(categoria).append("  ");
                     result.append("ISBN: ").append(isbn).append("  ");
-                    result.append("Prazo: ").append(prazo).append("  ");
+                    result.append("Prazo: ").append(prazo).append(" dias").append("  ");
                     result.append("Disponibilidade: ").append(disponibilidade).append("\n");
                 }
                 displayArea.setText(result.toString());

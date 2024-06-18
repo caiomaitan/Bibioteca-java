@@ -18,7 +18,7 @@ public class Status extends JFrame {
     public Status(Menu menu) {
         setTitle("Emprestimos");
         setSize(400, 300);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
         JPanel South = new JPanel();
